@@ -1,21 +1,22 @@
 diff --git a/pulpcore/app/settings.py b/pulpcore/app/settings.py
-index aa65d01b6..8a266d4b8 100644
+index aa65d01b6..dcce9a55f 100644
 --- a/pulpcore/app/settings.py
 +++ b/pulpcore/app/settings.py
-@@ -55,6 +55,11 @@ FILE_UPLOAD_HANDLERS = ("pulpcore.app.files.HashingFileUploadHandler",)
+@@ -55,6 +55,12 @@ FILE_UPLOAD_HANDLERS = ("pulpcore.app.files.HashingFileUploadHandler",)
  
  SECRET_KEY = True
  
 +# regex to alter path in content-disposition header & str to replace them with
-+#S3_REPO_MANGLE_REGEX = r'[^-a-zA-Z0-9._]'
-+S3_REPO_MANGLE_REGEX = r'[/=;]'
++# wrapped in parens to prevent dynaconf from thinking this is a list :/
++#S3_REPO_MANGLE_REGEX = r'([^-a-zA-Z0-9._])'
++S3_REPO_MANGLE_REGEX = r'([/=;])'
 +S3_REPO_MANGLE_TO = '__'
 +
  # Application definition
  
  INSTALLED_APPS = [
 diff --git a/pulpcore/content/handler.py b/pulpcore/content/handler.py
-index 26a8faa4c..ad0a2a897 100644
+index 26a8faa4c..11094ec9b 100644
 --- a/pulpcore/content/handler.py
 +++ b/pulpcore/content/handler.py
 @@ -390,7 +390,7 @@ class Handler:
@@ -71,7 +72,7 @@ index 26a8faa4c..ad0a2a897 100644
 +            mangled_repo_path = re.sub(
 +                settings.S3_REPO_MANGLE_REGEX, settings.S3_REPO_MANGLE_TO, path)
 +            artifact_name = os.path.basename(content_artifact.relative_path)
-+            content_disposition = f'attachment;x-pulp-repo-name={mangled_repo_path};filename={artifact_name}'
++            content_disposition = f'attachment;x-pulp-artifact-path={mangled_repo_path};filename={artifact_name}'
              parameters = {"ResponseContentDisposition": content_disposition}
              url = artifact_file.storage.url(artifact_file.name, parameters=parameters)
              raise HTTPFound(url)
