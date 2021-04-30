@@ -44,7 +44,7 @@ update-requirements:
 	cd pulp-core && \
 	sed -Ei 's/(django-storages)(=|[[:space:]]+@)/\1[boto3]\2/; s~(django-storages)@[[:alnum:]]+$$~\1@$(storages_release_branch)~; /^## The following requirements.*/,$$d' requirements.txt && \
 	docker build --target build -t $(tmp_image) . && \
-	docker run --rm $(tmp_image) /opt/pulp/bin/pip freeze --all -l \
+	docker run --rm $(tmp_image) /opt/pulp/bin/pip freeze -l \
 		-r /opt/pulp/pulp-requirements.txt > requirements.txt
 	docker rmi $(tmp_image)
 
