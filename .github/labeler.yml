@@ -1,3 +1,14 @@
 ---
 docs:
 - '**/*.md'
+
+github_actions:
+- .github/**
+
+python:
+- '**/*.py'
+- /pulp-core/requirements.txt
+- /Makefile
+
+docker:
+- pulp-*/**
