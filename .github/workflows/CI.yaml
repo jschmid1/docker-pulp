@@ -70,7 +70,7 @@ jobs:
 
     - name: helm commit
       run: |
-        git config user.name "${{ GITHUB_REPOSITORY }}"
+        git config user.name "$GITHUB_REPOSITORY"
         git config user.email github-actions@github.com
         git -C "$HELM_WORKDIR" commit "${DEV_VAL_PATH}"
         git -C "$HELM_WORKDIR" push ${{ steps.helm-update.outputs.BRANCH }}
