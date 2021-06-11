@@ -64,7 +64,7 @@ jobs:
         }
         for C in api content resource-manager worker
         do
-          yq eval "${C}.image.tag = '$TAG'" "${HELM_WORKDIR}/${DEV_VAL_PATH}"
+          yq eval ".${C}.image.tag = \"$TAG\"" "${HELM_WORKDIR}/${DEV_VAL_PATH}"
         done
         printf '::endgroup::\n'
 
