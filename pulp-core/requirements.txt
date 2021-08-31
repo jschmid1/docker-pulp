@@ -85,7 +85,7 @@ six==1.16.0
 solv==0.7.19
 sqlparse==0.4.1
 tablib==3.0.0
-typing-extensions==3.10.0.0
+typing-extensions==3.10.0.2
 uritemplate==3.0.1
 url-normalize==1.4.3
 urllib3==1.26.6
