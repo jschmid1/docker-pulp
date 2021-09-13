@@ -59,7 +59,7 @@ MarkupPy==1.14
 MarkupSafe==2.0.1
 multidict==5.1.0
 odfpy==1.4.1
-openpyxl==3.0.7
+openpyxl==3.0.8
 productmd==1.33
 psycopg2==2.8.6
 pycairo==1.20.1
