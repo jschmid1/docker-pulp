@@ -1,8 +1,8 @@
 # modules to install in core container
-pulpcore==3.14.4
+pulpcore==3.14.7
 pulp-file==1.8.2
 pulp-container==2.8.1
-pulp-rpm==3.14.1
+pulp-rpm==3.14.5
 pulp-deb==2.14.1
 # django-storages[boto3] gets magically expanded by pip freeze
 # but the [boto3] needs put back to work. Trust in "make update-requirements" :)
@@ -19,8 +19,8 @@ async-timeout==3.0.1
 asyncio-throttle==1.0.2
 attrs==21.2.0
 backoff==1.10.0
-boto3==1.18.51
-botocore==1.21.51
+boto3==1.18.52
+botocore==1.21.52
 certifi==2021.5.30
 cffi==1.14.6
 chardet==4.0.0
@@ -42,7 +42,7 @@ djangorestframework==3.12.4
 djangorestframework-queryfields==1.0.0
 drf-access-policy==0.9.2
 drf-nested-routers==0.93.3
-drf-spectacular==0.17.2
+drf-spectacular==0.17.3
 dynaconf==3.1.7
 ecdsa==0.13.3
 et-xmlfile==1.1.0
