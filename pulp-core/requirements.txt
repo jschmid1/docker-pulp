@@ -57,7 +57,7 @@ libcomps==0.1.15.post1
 lxml==4.6.3
 MarkupPy==1.14
 MarkupSafe==2.0.1
-multidict==5.1.0
+multidict==5.2.0
 odfpy==1.4.1
 openpyxl==3.0.9
 productmd==1.33
