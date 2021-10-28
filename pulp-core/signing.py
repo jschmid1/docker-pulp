@@ -25,8 +25,6 @@ with open("/tmp/public.key") as key:
             print(f"Signing service {service_name} already present")
 
         try:
-            AptReleaseSigningService.objects.get(name=service_name_deb)
-        except AptReleaseSigningService.DoesNotExist:
             print(f"Registering Signing service {service_name_deb}")
             AptReleaseSigningService.objects.create(
                 name=service_name_deb,
@@ -34,5 +32,5 @@ with open("/tmp/public.key") as key:
                 pubkey_fingerprint=fingerprint,
                 script=script_path,
             )
-        else:
-            print(f"Signing service {service_name_deb} already present")
+        except Exception as e:
+            print(f"Cought exception while creating AptReleaseSigningService: {e}")
