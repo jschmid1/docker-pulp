@@ -53,3 +53,5 @@ services:
     - redis
     volumes:
     - ./.volume/pulp:/var/lib/pulp
+    environment:
+    - PULP_TEST
