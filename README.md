@@ -79,7 +79,8 @@ docker-compose:
 
 ```
 mkdir -p .volume/pulp && chown 995:995 .volume/pulp
-docker-compose up
+make images
+PULP_TEST=1 docker-compose up
 ```
 
 Then you can access Pulp on `http://localhost:24817/pulp/api/v3/`
