@@ -20,7 +20,7 @@ with open("/tmp/public.key") as key:
                 script=script_path,
             )
         except Exception as e:
-            print(f"Cought exception while creating AsciiArmoredDetachedSigningService: {e}")
+            print(f"Caught exception while creating AsciiArmoredDetachedSigningService: {e}")
         try:
             print(f"Registering Signing service {service_name_deb}")
             AptReleaseSigningService.objects.create(
@@ -30,4 +30,4 @@ with open("/tmp/public.key") as key:
                 script=script_path,
             )
         except Exception as e:
-            print(f"Cought exception while creating AptReleaseSigningService: {e}")
+            print(f"Caught exception while creating AptReleaseSigningService: {e}")

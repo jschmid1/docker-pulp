@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 
-FILE_PATH=$1
-SIGNATURE_PATH="$FILE_PATH.asc"
-DETACHED_SIGNATURE_PATH="Release.gpg"
-INLINE_SIGNATURE_PATH="InRelease"
+FILE_PATH=$(realpath "$1")
+SIGNATURE_PATH="${FILE_PATH}.asc"
+INLINE_SIGNATURE_PATH="/var/lib/pulp/InRelease"
 
 export GNUPGHOME=/var/lib/pulp/.gnupg
 ADMIN_ID=$(gpg --list-keys --with-colons | grep fpr: | head -n1 | cut -d: -f10)
@@ -27,16 +26,12 @@ gpg --batch \
     --output "${INLINE_SIGNATURE_PATH}" \
     "${FILE_PATH}"
 
-# Deb Repositories want the detached-signature with a certain name
-ln -sf "${SIGNATURE_PATH}" "${DETACHED_SIGNATURE_PATH}"
-
 json=$(cat <<-END
     {
         "file": "${FILE_PATH}",
         "signature": "${SIGNATURE_PATH}",
         "signatures": {
-            "inline": "${INLINE_SIGNATURE_PATH}",
-            "detached": "${DETACHED_SIGNATURE_PATH}"
+            "inline": "${INLINE_SIGNATURE_PATH}"
         }
     }
 END
