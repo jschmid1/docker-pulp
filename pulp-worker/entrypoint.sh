@@ -8,6 +8,7 @@ if [[ -r "$GPG_KEY" ]]; then
     gpg --import $GPG_KEY
 elif [[ ! -r "${GPG_KEY}" && "${PULP_TEST}" -eq 1 ]]; then
     echo "Could not find GPG key. Generating new"
+    if [[ $(gpg --list-keys | wc -l) -eq 0 ]]; then
     gpg --batch --no-tty --pinentry-mode loopback --gen-key <<EOF
 Key-Type: 1
 Key-Length: 2048
@@ -18,6 +19,7 @@ Name-Real: Tester
 Name-Email: test@test.com
 Expire-Date: 0
 EOF
+fi
 else
 
 echo -e "Could not load GPG key. "
